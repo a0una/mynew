@@ -14,6 +14,17 @@ body {
 #wrapper {
     margin: 0 auto 0 auto;
     width: auto;
+    text-align: center;
+}
+#wrapper a {
+    color: crimson;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+#wrapper a:hover{
+    color: #e0ffe0;
+    text-shadow:0px 0px 0 #0000;
 }
 
 #topimage {
@@ -40,7 +51,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #ff6666;
+    color: crimson;
     font-size: 18px;
     text-decoration: none;
 }
@@ -82,13 +93,16 @@ header nav ul li a:hover{
 #leftside {
     margin-top: 10px;
     padding: 10px;
-    text-align: left;
-    width: fit-content;
+    text-align: center;
+    width: 80%;
+    background-color: #ffff;
 }
+
+
 
 #leftside a {
     text-decoration: none;
-    color: #ff6666;
+    color: crimson;
 }
 
 #leftside a:hover{
@@ -148,13 +162,3 @@ footer {
     text-align: center;
 }
 
-footer a {
-    color: #ff6666;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-footer a:hover{
-    color: #e0ffe0;
-    text-shadow:0px 0px 0 #0000;
-}

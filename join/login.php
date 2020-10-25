@@ -32,17 +32,14 @@
                 <p>メールアドレスとパスワードを記入して</p>
                 <p>ログインしてください。</p>
                 <br><br>
-                <p>会員登録をされてない方はこちらから</p>
-                <div class="box2">
-                    <p><a href="#">会員登録する</a></p>
-                </div>
+                <p>会員登録をされてない方は<a href="entry.php">こちら</a>から</p>
             </div>
             <div id="rightside">
                 <form action="" method="post">
                     <d1>
                         <dt>メールアドレス</dt>
                         <dd>
-                            <input type="text" name="email" size="35" maxlength="255" value="#" />
+                            <input type="email" name="email" size="35" maxlength="255" value="#" />
                             
                         </dd>
                         <dt>パスワード</dt>
@@ -63,10 +60,10 @@
 
         </div><!--centerpart end-->
     </div><!--countainer end-->
+    <a href="../index.html">戻る</a>
 </div><!--wrapper end-->
 <footer>
-    <a href="../index.html">戻る</a>
-    <br><br>
+
     <p><small>© 2020 ay.</small></p>
 
 </body>
