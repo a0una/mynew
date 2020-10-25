@@ -11,6 +11,11 @@ body {
     margin: 30px;
 }
 
+#wrapper {
+    margin: 0 auto 0 auto;
+    width: auto;
+}
+
 #topimage {
     text-align: center;
 }
@@ -45,7 +50,7 @@ header nav ul li a:hover{
     text-shadow:0px 0px 0 #0000;
 }
 
-.clearfix:after {
+.clearfix::after {
     content: ".";
     display: block;
     height: 0;
@@ -58,14 +63,61 @@ header nav ul li a:hover{
 #container {
     width: auto;
     height: auto;
+    color: #595758;
 }
 
 
 
-#centerpart {
+#main {
     margin-top: 10px;
-    background-color: #ffcccc;
-    color: #595758;
+
+    height: 250px;
+    text-align: center;
+}
+
+#leftside {
+    float: left;
+    margin-top: 10px;
+
+    padding: 0.5em;
+    text-align: left;
+}
+
+.box {
+    padding: 0.5px;
+    margin: 2em ;
+    color: #565656;
+    background: #ffe0e0;
+    box-shadow: 0px 0px 0px 10px #ffe0e0;
+    border: dashed 2px #ffc3c3;
+    border-radius: 8px;
+}
+.box p {
+    margin: 0; 
+    padding: 0;
+}
+
+
+#leftside nav ul li {
+    list-style: none;
+}
+
+#rightside {
+    float: right;
+    margin-top: 10px;
+    padding: 30px;
+}
+
+.viewpage  {
+    text-decoration: none;
+    color: crimson;
+}
+
+#entry {
+    margin-top: 20px;
+    padding: 10px;
+    background-color:#fff0e0;
+    text-decoration: none;
 }
 
 footer {
