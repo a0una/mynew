@@ -25,14 +25,14 @@
     </div>
 
     <div id="container">
-        <div id="main">
+        <div id="centerpart">
            
-        </div>
+        </div><!--enterpart end-->
     </div><!--countainer end-->
 
 </div><!--wrapper end-->
 <footer>
-    <p><small>© copyright 2020 ay.</small></p>
+    <p><small>© 2020 ay.</small></p>
 </body>
 
 </html>
