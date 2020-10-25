@@ -21,13 +21,13 @@
     <div id="topimage">
             <p>自分のレシピを記録しよう!</p>
 
-            <img src="../images/silverware-1667987_640.png" alt="テーブルウェア" height="80px" width="120px">
+            <img src="../images/silverware.png" alt="テーブルウェア" height="80px" width="120px">
     </div>
 
     <div id="container">
         <div id="centerpart">
            
-        </div><!--enterpart end-->
+        </div><!--centerpart end-->
     </div><!--countainer end-->
 
 </div><!--wrapper end-->
