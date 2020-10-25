@@ -75,12 +75,25 @@ header nav ul li a:hover{
     justify-content: center;
 }
 
+.error {
+    color: brown;
+}
 
 #leftside {
     margin-top: 10px;
-    padding: 0.5em;
+    padding: 10px;
     text-align: left;
     width: fit-content;
+}
+
+#leftside a {
+    text-decoration: none;
+    color: #ff6666;
+}
+
+#leftside a:hover{
+    color: #e0ffe0;
+    text-shadow:0px 0px 0 #0000;
 }
 
 .box {
@@ -108,8 +121,8 @@ header nav ul li a:hover{
 
 #rightside {
     margin-top: 10px;
-    padding: 30px;
-    margin: 2em;
+    padding: 10px;
+
 }
 
 .viewpage  {
@@ -133,4 +146,15 @@ footer {
     width: 100%;
     height: 60px;
     text-align: center;
+}
+
+footer a {
+    color: #ff6666;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+footer a:hover{
+    color: #e0ffe0;
+    text-shadow:0px 0px 0 #0000;
 }
