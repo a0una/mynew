@@ -1,33 +1,9 @@
-<?php
-
-session_start();
-require('../dbconnect.php');
-
-if (!isset($_SESSION['join'])) {
-    header('Location: entry.php');
-    exit();
-}
-
-if (!empty($_POST)) {
-    $statment = $db->prepare('INSERT INTO members SET name=?, email=?, password=?, created=NOW()');
-    $statment->execute(array(
-    $_SESSION['join']['name'],
-    $_SESSION['join']['email'],
-    sha1($_SESSION['join']['password'])
-    ));
-    unset($_SESSION['join']);
-
-    //thanks.php作る
-    header('Location: thanks.php');
-    exit();
-}
-?>
 <!doctype html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="checkstyle.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../style.css" media="all">
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap" rel="stylesheet">
     <title>My Recipe Collection ～私のレシピ集～</title>
@@ -49,39 +25,42 @@ if (!empty($_POST)) {
     </div>
 
     <div id="container" class="clearfix">
-    <p>記入した内容を確認して下さい。</p>
+
         <div id="centerpart">
+
             <div id="leftside">
+                <p>メールアドレスとパスワードを記入して</p>
+                <p>ログインしてください。</p>
+                <br><br>
+                <p>会員登録をされてない方は【<a href="entry.php">こちら</a>】から</p>
+            </div>
+            <div id="rightside">
                 <form action="" method="post">
-                    <input type="hidden" name="action" value="submit" />
-                    <dl>
-                        <dt>ニックネーム</dt>
-                        <dd>
-                        <?php print(htmlspecialchars($_SESSION['join']['name'],ENT_QUOTES)); ?>
-                        </dd>
+                    <d1>
                         <dt>メールアドレス</dt>
                         <dd>
-                        <?php print(htmlspecialchars($_SESSION['join']['email'],ENT_QUOTES)); ?>
+                            <input type="email" name="email" size="35" maxlength="255" value="#" />
+                            
                         </dd>
                         <dt>パスワード</dt>
                         <dd>
-                        【表示されません】
+                            <input type="password" name="password" size="35" maxlength="255" value="#" />
                         </dd>
-                    </dl>
-                        
+                        <dt>次回から自動ログインする</dt>
+                        <dd>
+                            <input id="save" type="checkbox" name="save" value="on">
+                            <label for="save">ON</label>
+                        </dd>
+                    </d1>
                     <div>
-                        <input type="button" value="書き直す" onClick="location.href='entry.php?action=rewrite'">｜<input type="submit" value="登録"　/>
-                    </div>
-                    <br><br><br>
-                    <div>
-                        
+                        <input type="submit" value="ログイン" />
                     </div>
                 </form>
             </div>
 
         </div><!--centerpart end-->
     </div><!--countainer end-->
-    <a href="../index.html">戻る</a>
+        <h3><a href="../index.html">戻る</a></h3>
 </div><!--wrapper end-->
 <footer>
 

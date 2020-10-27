@@ -7,8 +7,9 @@ body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-size: 14px;
     color: #595758;
-    background-color: #ffe0e0;
     margin: 60px;
+    width: auto;
+    background-color: rgb(253, 250, 242);
 }
 
 #wrapper {
@@ -17,13 +18,13 @@ body {
     text-align: center;
 }
 #wrapper a {
-    color: crimson;
+    color: #595758;
     font-size: 15px;
     text-decoration: none;
 }
 
 #wrapper a:hover{
-    color: #e0ffe0;
+    color: crimson;
     text-shadow:0px 0px 0 #0000;
 }
 
@@ -51,13 +52,11 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: crimson;
-    font-size: 18px;
+    font-size: large;
     text-decoration: none;
 }
 
 header nav ul li a:hover{
-    color: #e0ffe0;
     text-shadow:0px 0px 0 #0000;
 }
 
@@ -99,59 +98,60 @@ header nav ul li a:hover{
 
 #leftside a {
     text-decoration: none;
-    color: crimson;
 }
 
 #leftside a:hover{
-    color: #e0ffe0;
     text-shadow:0px 0px 0 #0000;
 }
 
-.box {
+.box1 {
     padding: 0.5px;
     margin: 2em ;
     color: #565656;
-    background: #ffe0e0;
-    box-shadow: 0px 0px 0px 10px #ffe0e0;
-    border: dashed 2px #ffc3c3;
+    border:solid 2px #595758;
     border-radius: 8px;
-    width: auto;
+    width: 100%;
 }
-.box h4 {
+.box1 h3 {
     color: #ff6666;
 }
-.box p {
+
+.box1 p {
     margin: 0; 
     padding: 0;
 }
 
 
-.box nav ul li {
+.box1 nav ul li {
     list-style: none;
 }
 
 #rightside {
     margin-top: 10px;
     padding: 10px;
-
+    justify-content: space-evenly;
 }
 
+.box2 {
+    padding: 5px;
+    margin: 2em ;
+    color: #565656;
+    border:solid 2px #595758;
+    border-radius: 8px;
+    width: 100%;
+    font-size: medium;
+
+}
 .viewpage  {
-    text-decoration: none;
-    color: crimson;
-}
-
-#entry {
-    margin-top: 40px;
-    padding: 10px;
     text-decoration: none;
     height: auto;
 }
 
-#entry a {
+.entry {
     text-decoration: none;
-    color: crimson;
+    height: auto;
 }
+
 
 footer {
     width: 100%;

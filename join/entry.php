@@ -1,26 +1,43 @@
 <?php
+	session_start();
+	require('../dbconnect.php');
 
-session_start();
-require('../dbconnect.php');
-
-if (!isset($_SESSION['join'])) {
-    header('Location: login.php');
-    exit();
-}
-
-if (!empty($_POST)) {
-    $statment = $db->prepare('INSERT INTO members SET name=?, email=?, password=?, created=NOW()');
-    $statment->execute(array(
-    $_SESSION['join']['name'],
-    $_SESSION['join']['email'],
-    sha1($_SESSION['join']['password'])
-    ));
-    unset($_SESSION['join']);
-
-    //thanks.php作る
-    header('Location: thanks.php');
-    exit();
-}
+	if(!empty($_POST)){
+		if($_POST['name'] ===''){
+			$error['name']='blank';
+		}
+		if($_POST['email'] ===''){
+			$error['email']='blank';
+		}
+		if(strlen($_POST['password'] )<4){
+			$error['password']='length';
+        }
+        if(!is_numeric($_POST['password'])){
+            $error['password']='numeric';
+        }
+		if($_POST['password'] ===''){
+			$error['password']='blank';
+		}
+		//アカウントの重複をcheck
+		if(empty($error)){
+			$member=$db->prepare('SELECT COUNT(*) AS cnt FROM user_data WHERE email=?');
+			$member->execute(array($_POST['email']));
+			$record=$member->fetch();
+			if($record['cnt'] >0){
+				$error['email']='duplicate';
+			}
+        }
+        
+        //check.phpに移動する
+		if(empty($error)){
+			$_SESSION['join']=$_POST;
+			header('Location: check.php');
+			exit();
+		}
+	}
+	if($_REQUEST['action']=='rewrite' && isset($_SESSION['join'])){
+		$_POST=$_SESSION['join'];
+	}
 ?>
 <!doctype html>
 <html lang="ja">
@@ -49,39 +66,51 @@ if (!empty($_POST)) {
     </div>
 
     <div id="container" class="clearfix">
-    <p>各項目を記入してください</p>
+    <h3>各項目を記入してください</h3>
         <div id="centerpart">
             <div id="leftside">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="submit" />
                     <dl>
-                        <dt>ニックネーム</dt>
+                        <dt>お名前</dt>
                         <dd>
-                        <?php print(htmlspecialchars($_SESSION['join']['name'],ENT_QUOTES)); ?>
+                            <input type="text" name="name" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['name'],ENT_QUOTES)); ?>" />
+                            <?php if ($error['name'] === 'blank'): ?>
+                            <p class="error">*お名前を入力してください</p>
+                            <?php endif; ?>
                         </dd>
                         <dt>メールアドレス</dt>
                         <dd>
-                        <?php print(htmlspecialchars($_SESSION['join']['email'],ENT_QUOTES)); ?>
+                            <input type="email" name="email" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['email'],ENT_QUOTES)); ?>" />
+                            <?php if ($error['email'] === 'blank'): ?>
+                                <p class="error">*メールアドレスを入力してください</p>
+                                <?php endif; ?>
+                            <?php if ($error['email'] === 'duplicate'): ?>
+                            <p class="error">*すでに登録されているメールアドレスです</p>
+                            <?php endif; ?>
                         </dd>
-                        <dt>パスワード</dt>
+                        <dt>パスワード&lang;半角英数字でご入力ください&rang;<span class="caution">　*必須</span></dt>
                         <dd>
-                        【表示されません】
+                            <input type="password" name="password" size="10" maxlength="20" value="<?php print(htmlspecialchars($_POST['password'],ENT_QUOTES)); ?>" />
+                            <?php if ($error['password'] === 'blank'): ?>
+                            <p class="error">*passwordを入力してください</p>
+                            <?php endif; ?>
+                            <?php if ($error['password'] === 'length'): ?>
+                            <p class="error">*passwordを4文字以上で入力してください</p>
+                            <?php endif; ?>
+                            <?php if ($error['password'] === 'numeric'): ?>
+                            <p class="error">*passwordを半角英数字で入力してください</p>
+                            <?php endif; ?>
                         </dd>
                     </dl>
-                        
-                    <div>
-                        <input type="button" value="書き直す" onClick="location.href='entry.php?action=rewrite'">｜<input type="submit" value="登録"　/>
-                    </div>
-                    <br><br><br>
-                    <div>
-                        
-                    </div>
+                    <br>
+                        <input type="submit" value="入力内容を確認する" />
                 </form>
-            </div>
-
+                <br>
+            </div><!--leftside end-->
         </div><!--centerpart end-->
     </div><!--countainer end-->
-    <a href="../index.html">戻る</a>
+    <h3><a href="../index.html">戻る</a></h3>
 </div><!--wrapper end-->
 <footer>
 
