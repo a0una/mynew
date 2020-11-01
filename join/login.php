@@ -13,9 +13,13 @@
 
 <div id="wrapper">
 
-    <header class="clearfix">
+    <header>
+    <nav>
+            <ul class="clearfix">
+                <li><a href="../index.html">戻る</a></li>
+            </ul>
+        </nav>
         <h1>My Recipe Collection</h1>
-        
     </header>
 
     <div id="topimage" class="clearfix">
@@ -32,7 +36,7 @@
                 <p>メールアドレスとパスワードを記入して</p>
                 <p>ログインしてください。</p>
                 <br><br>
-                <p>会員登録をされてない方は<a href="entry.php">こちら</a>から</p>
+                <p>会員登録をされてない方は【<a href="entry.php">こちら</a>】から</p>
             </div>
             <div id="rightside">
                 <form action="" method="post">
@@ -60,7 +64,7 @@
 
         </div><!--centerpart end-->
     </div><!--countainer end-->
-    <a href="../index.html">戻る</a>
+        
 </div><!--wrapper end-->
 <footer>
 

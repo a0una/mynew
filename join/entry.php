@@ -54,9 +54,13 @@
 
 <div id="wrapper">
 
-    <header class="clearfix">
+<header>
+    <nav>
+            <ul class="clearfix">
+                <li><a href="../index.html">戻る</a></li>
+            </ul>
+        </nav>
         <h1>My Recipe Collection</h1>
-        
     </header>
 
     <div id="topimage" class="clearfix">
@@ -89,17 +93,14 @@
                             <p class="error">*すでに登録されているメールアドレスです</p>
                             <?php endif; ?>
                         </dd>
-                        <dt>パスワード&lang;半角英数字でご入力ください&rang;<span class="caution">　*必須</span></dt>
+                        <dt>パスワード<span class="caution">　*必須</span><br>&lang;4文字以上の半角英数字でご入力ください&rang;</dt>
                         <dd>
                             <input type="password" name="password" size="10" maxlength="20" value="<?php print(htmlspecialchars($_POST['password'],ENT_QUOTES)); ?>" />
                             <?php if ($error['password'] === 'blank'): ?>
                             <p class="error">*passwordを入力してください</p>
                             <?php endif; ?>
-                            <?php if ($error['password'] === 'length'): ?>
-                            <p class="error">*passwordを4文字以上で入力してください</p>
-                            <?php endif; ?>
-                            <?php if ($error['password'] === 'numeric'): ?>
-                            <p class="error">*passwordを半角英数字で入力してください</p>
+                            <?php if ($error['password'] === 'length' || $error['password'] === 'numeric'): ?>
+                            <p class="error">*passwordを4文字以上の半角英数字で入力してください</p>
                             <?php endif; ?>
                         </dd>
                     </dl>
@@ -110,7 +111,6 @@
             </div><!--leftside end-->
         </div><!--centerpart end-->
     </div><!--countainer end-->
-    <h3><a href="../index.html">戻る</a></h3>
 </div><!--wrapper end-->
 <footer>
 

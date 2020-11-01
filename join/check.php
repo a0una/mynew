@@ -37,9 +37,13 @@ if (!empty($_POST)) {
 
 <div id="wrapper">
 
-    <header class="clearfix">
+<header>
+    <nav>
+            <ul class="clearfix">
+                <li><a href="../index.html">戻る</a></li>
+            </ul>
+        </nav>
         <h1>My Recipe Collection</h1>
-        
     </header>
 
     <div id="topimage" class="clearfix">
@@ -81,7 +85,6 @@ if (!empty($_POST)) {
 
         </div><!--centerpart end-->
     </div><!--countainer end-->
-    <h3><a href="../index.html">戻る</a></h3>
 </div><!--wrapper end-->
 <footer>
 

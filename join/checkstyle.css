@@ -9,12 +9,14 @@ body {
     color: #595758;
     margin: 60px;
     width: auto;
+    height: auto;
     background-color: rgb(253, 250, 242);
 }
 
 #wrapper {
     margin: 0 auto 0 auto;
     width: auto;
+    height: auto;
     text-align: center;
 }
 #wrapper a {
@@ -80,7 +82,7 @@ header nav ul li a:hover{
 
 #centerpart {
     margin-top: 10px;
-    height: 250px;
+    height: auto;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -97,7 +99,9 @@ header nav ul li a:hover{
     width: 80%;
 }
 
-
+#leftside h2 {
+    font-family: 'Sacramento', cursive;;
+}
 
 #leftside a {
     text-decoration: none;
@@ -108,8 +112,8 @@ header nav ul li a:hover{
 }
 
 .box1 {
-    padding: 0.5px;
-    margin: 2em ;
+    padding: 25px;
+    margin: 20px ;
     color: #565656;
     border:solid 2px #595758;
     border-radius: 8px;

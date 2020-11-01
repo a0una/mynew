@@ -93,8 +93,17 @@ header nav ul li a:hover{
     margin-top: 10px;
     padding: 10px;
     text-align: left;
-    width: fit-content;
+    width: auto;
+    height: auto;
 }
+
+#leftside h1 {
+    color: #ff6666;
+    font-family: 'Sacramento', cursive;
+    text-align: center;
+    font-size: 40px;
+}
+
 
 #leftside a {
     text-decoration: none;
@@ -110,7 +119,8 @@ header nav ul li a:hover{
     color: #565656;
     border:solid 2px #595758;
     border-radius: 8px;
-    width: 100%;
+    width: 80%;
+    height: auto;
 }
 .box1 h3 {
     color: #ff6666;
