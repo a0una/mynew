@@ -1,43 +1,57 @@
 <?php
-	session_start();
-	require('../dbconnect.php');
 
-	if(!empty($_POST)){
-		if($_POST['name'] ===''){
-			$error['name']='blank';
-		}
-		if($_POST['email'] ===''){
-			$error['email']='blank';
-		}
-		if(strlen($_POST['password'] )<4){
-			$error['password']='length';
+session_start();
+require('../dbconnect.php');
+
+if(!empty($_POST)){
+    if($_POST['name'] ===''){
+        $error['name']='blank';
+    }
+    if($_POST['email'] ===''){
+        $error['email']='blank';
+    }
+    if(strlen($_POST['password'] )<4){
+        $error['password']='length';
+    }
+    if(!is_numeric($_POST['password'])){
+        $error['password']='numeric';
+    }
+    if($_POST['password'] ===''){
+        $error['password']='blank';
+    }
+    //アカウントの重複をcheck
+    if(empty($error)){
+        $member=$db->prepare('SELECT COUNT(*) AS cnt FROM user_data WHERE email=?');
+        $member->execute(array($_POST['email']));
+        $record=$member->fetch();
+        if($record['cnt'] >0){
+            $error['email']='duplicate';
         }
-        if(!is_numeric($_POST['password'])){
-            $error['password']='numeric';
-        }
-		if($_POST['password'] ===''){
-			$error['password']='blank';
-		}
-		//アカウントの重複をcheck
-		if(empty($error)){
-			$member=$db->prepare('SELECT COUNT(*) AS cnt FROM user_data WHERE email=?');
-			$member->execute(array($_POST['email']));
-			$record=$member->fetch();
-			if($record['cnt'] >0){
-				$error['email']='duplicate';
-			}
-        }
-        
-        //check.phpに移動する
-		if(empty($error)){
-			$_SESSION['join']=$_POST;
-			header('Location: check.php');
-			exit();
-		}
-	}
-	if($_REQUEST['action']=='rewrite' && isset($_SESSION['join'])){
-		$_POST=$_SESSION['join'];
-	}
+    }
+    
+    //check.phpに移動する
+    if(empty($error)){
+        $_SESSION['join']=$_POST;
+        header('Location: check.php');
+        exit();
+    }
+}
+
+
+if(isset($_SESSION['join'])){
+    if($_REQUEST['action']=='rewrite'){
+        $_POST=$_SESSION['join'];
+    }
+}
+
+echo '<pre>';
+var_dump($_POST);
+echo '</pre>';
+
+echo '<pre>';
+var_dump($_REQUEST);
+echo '</pre>';
+
 ?>
 <!doctype html>
 <html lang="ja">
@@ -74,33 +88,36 @@
         <div id="centerpart">
             <div id="leftside">
                 <form action="" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="action" value="submit" />
+                    
                     <dl>
                         <dt>お名前</dt>
                         <dd>
-                            <input type="text" name="name" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['name'],ENT_QUOTES)); ?>" />
-                            <?php if ($error['name'] === 'blank'): ?>
+                            <input type="text" name="name" size="35" maxlength="255" value="<?php if(!empty($_POST['name']) ){ print htmlentities($_POST['name'], ENT_QUOTES, 'UTF-8'); }?>" />
+                            <?php if (isset($error['name']) && $error['name'] === 'blank'): ?>
                             <p class="error">*お名前を入力してください</p>
                             <?php endif; ?>
                         </dd>
                         <dt>メールアドレス</dt>
                         <dd>
-                            <input type="email" name="email" size="35" maxlength="255" value="<?php print(htmlspecialchars($_POST['email'],ENT_QUOTES)); ?>" />
-                            <?php if ($error['email'] === 'blank'): ?>
+                            <input type="email" name="email" size="35" maxlength="255" value="<?php if(!empty($_POST['email']) ){print  htmlentities($_POST['email'], ENT_QUOTES, 'UTF-8'); }?>" />
+                            <?php if (isset($error['email']) && $error['email'] === 'blank'): ?>
                                 <p class="error">*メールアドレスを入力してください</p>
                                 <?php endif; ?>
-                            <?php if ($error['email'] === 'duplicate'): ?>
+                            <?php if (isset($error['email']) && $error['email'] === 'duplicate'): ?>
                             <p class="error">*すでに登録されているメールアドレスです</p>
                             <?php endif; ?>
                         </dd>
                         <dt>パスワード<span class="caution">　*必須</span><br>&lang;4文字以上の半角英数字でご入力ください&rang;</dt>
                         <dd>
-                            <input type="password" name="password" size="10" maxlength="20" value="<?php print(htmlspecialchars($_POST['password'],ENT_QUOTES)); ?>" />
-                            <?php if ($error['password'] === 'blank'): ?>
+                            <input type="password" name="password" size="10" maxlength="20" value="" />
+                            <?php if (isset($error['password']) && $error['password'] === 'blank'): ?>
                             <p class="error">*passwordを入力してください</p>
                             <?php endif; ?>
-                            <?php if ($error['password'] === 'length' || $error['password'] === 'numeric'): ?>
-                            <p class="error">*passwordを4文字以上の半角英数字で入力してください</p>
+                            <?php if (isset($error['password']) && $error['password'] === 'length' ): ?>
+                            <p class="error">*passwordを4文字以上で入力してください</p>
+                            <?php endif; ?>
+                            <?php if (isset($error['password']) && $error['password'] === 'numeric'): ?>
+                            <p class="error">*passwordを半角英数字で入力してください</p>
                             <?php endif; ?>
                         </dd>
                     </dl>
