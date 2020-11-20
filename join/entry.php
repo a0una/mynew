@@ -44,14 +44,6 @@ if(isset($_SESSION['join'])){
     }
 }
 
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
-
-echo '<pre>';
-var_dump($_REQUEST);
-echo '</pre>';
-
 ?>
 <!doctype html>
 <html lang="ja">
